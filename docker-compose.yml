@@ -1,0 +1,47 @@
+name: sport_calendar
+
+services:
+  sport_calendar:
+    build: .
+    container_name: sport_calendar
+    volumes:
+      - ./sport_calendar:/sport_calendar
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./env/sport_calendar.env
+      - ./env/database.env
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: on-failure
+    networks:
+      - nt_sport_calendar
+      
+   
+  database:
+    image: postgres:16
+    env_file:
+      - ./env/database.env
+    environment:
+      - name=value
+    expose:
+      - 5432
+    volumes:
+      - volume_sport_calendar:/var/lib/postgresql/data
+      - ./scripts/init_database.sh:/docker-entrypoint-initdb.d/init.sh:ro
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 4
+    restart: on-failure
+    networks:
+      - nt_sport_calendar
+  
+volumes:
+  volume_sport_calendar:
+networks:
+  nt_sport_calendar:
+    driver: bridge
+    
