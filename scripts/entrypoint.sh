@@ -2,7 +2,7 @@
 
 set -e  #exit if any command within script returns a non-zero exit status
 
-python manage.py makemigrations
+python manage.py makemigrations --noinput
 python manage.py migrate
 
 if [ "$DEBUG" = "True" ]; then
