@@ -1,6 +1,4 @@
 Django==5.0.7
 psycopg2-binary==2.9.9
 djangorestframework==3.15.2
-djangorestframework_simplejwt[crypto]==5.3.1
-pillow==10.4.0 # image lib
 django-cors-headers # for cookies
