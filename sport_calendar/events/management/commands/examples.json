@@ -1,0 +1,63 @@
+{
+    "venues": [
+        {
+            "name": "Allianz Arena",
+            "country": "Germany",
+            "city": "Munich",
+            "address": "Werner-Heisenberg-Allee 25"
+        },
+        {
+            "name": "Ernst Happel Stadion",
+            "country": "Austria",
+            "city": "Vienna",
+            "address": "Meiereistraße 7"
+        }
+    ],
+    "teams": [
+        {
+            "name": "Salzburg",
+            "sport": "Football"
+        },
+        {
+            "name": "Sturm",
+            "sport": "Football"
+        },
+        {
+            "name": "Capitals",
+            "sport": "Ice Hockey"
+        },
+        {
+            "name": "KAC",
+            "sport": "Ice Hockey"
+        }
+    ],
+    "sports": [
+        {
+            "name": "Football"
+        },
+        {
+            "name": "Ice Hockey"
+        }
+    ],
+    "countries": [
+        {
+            "name": "Austria",
+            "code": "AT"
+        },
+        {
+            "name": "Germany",
+            "code": "DE"
+        }
+    ],
+    "events":[
+        {
+            "name": "Cup Finale",
+            "description": "Das Spiel des Jahres mit ...",
+            "sport": "Football",
+            "venue": "Allianz Arena",
+            "teams": ["Salzburg", "Sturm"],
+            "date": "2024-12-31",
+            "time": "18:00:00"
+        }
+    ]
+}

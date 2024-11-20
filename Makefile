@@ -17,14 +17,14 @@ build:
 build-nc:
 	${DOCKER_COMPOSE} build --no-cache
 
-# rm_vol:
-# 	docker volume prune -af
+rm_vol:
+	docker volume prune -af
 
 clean: down
 	docker system prune -f
 
-# fclean: down rm_vol 
-# 	docker system prune -af
+fclean: down rm_vol 
+	docker system prune -af
 
 re: down rm_vol build_up
 

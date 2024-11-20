@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
+from django.core.management import call_command
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
+
+# Creating example data if no events in database
+call_command('load_example_data')

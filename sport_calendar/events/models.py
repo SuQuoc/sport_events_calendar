@@ -9,27 +9,27 @@ class Event(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
-    _fkey_sport = models.ForeignKey("Sport", on_delete=models.CASCADE, related_name="events")
-    _fkey_venue = models.ForeignKey("Venue", on_delete=models.CASCADE, related_name="events")
-    _fkey_teams = models.ManyToManyField("Team", related_name="teams")
+    _fkey_sport = models.ForeignKey('Sport', on_delete=models.CASCADE, related_name='events')
+    _fkey_venue = models.ForeignKey('Venue', on_delete=models.CASCADE, related_name='events')
+    _fkey_teams = models.ManyToManyField('Team', related_name='teams')
     
-    date = models.DateTimeField()
+    date = models.DateField()
     time = models.TimeField()
     status = models.CharField(
         choices=Status.choices,
         default=Status.SCHEDULED,
     )
 
-    def __str__(self):
-        team_names = [team.name for team in self._fkey_teams.all()]
-        if len(team_names) < 2:
-            raise ValueError("An event must have at least two teams")
-        return f"{self.name}: {team_names[0]} vs {team_names[1]}"
+    # def __str__(self):
+    #     team_names = [team.name for team in self._fkey_teams.all()]
+    #     if len(team_names) < 2:
+    #         raise ValueError('An event must have at least two teams')
+    #     return f'{self.name}: {team_names[0]} vs {team_names[1]}'
 
 
 class Venue(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    _fkey_country = models.ForeignKey("Country", on_delete=models.CASCADE, related_name="countries")
+    _fkey_country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='countries')
     city = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
 
@@ -39,7 +39,7 @@ class Venue(models.Model):
 
 class Team(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    _fkey_sport = models.ForeignKey("Sport", on_delete=models.CASCADE, related_name="teams")
+    _fkey_sport = models.ForeignKey('Sport', on_delete=models.CASCADE, related_name='teams')
 
     def __str__(self):
         return self.name
@@ -57,4 +57,4 @@ class Country(models.Model):
     code = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
-        return f"{self.name} - {self.code}"
+        return f'{self.name} - {self.code}'
