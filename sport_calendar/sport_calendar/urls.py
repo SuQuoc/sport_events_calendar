@@ -22,6 +22,7 @@ from django.core.management import call_command
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('events.urls')),
 ]
 
 # Creating example data if no events in database
