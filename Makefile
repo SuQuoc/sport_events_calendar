@@ -1,7 +1,10 @@
 DOCKER_COMPOSE = docker compose
+IMAGE_NAME = sport_calendar
+CONTAINER_NAME = sport_calendar
+VOLUME_NAME = sport_calendar_volume_database
 
 ###################### General #####################
-.PHONY: all up build_up down build_only rm_vol fclean re
+.PHONY: all up build_up down build_only rm_vol clean fclean re
 
 all: up
 
@@ -18,15 +21,13 @@ build-nc:
 	${DOCKER_COMPOSE} build --no-cache
 
 rm_vol:
-	docker volume prune -af
+	docker volume rm $(VOLUME_NAME)
 
 clean: down
-	docker system prune -f
+	docker rm $(CONTAINER_NAME)
+	docker rmi $(IMAGE_NAME)
 
-fclean: down rm_vol 
-	docker system prune -af
-
+fclean: clean rm_vol 
+	
 re: down rm_vol build_up
-
-
 

@@ -3,6 +3,7 @@ name: sport_calendar
 services:
   sport_calendar:
     build: .
+    image: sport_calendar:latest
     container_name: sport_calendar
     volumes:
       - ./sport_calendar:/sport_calendar
@@ -23,12 +24,10 @@ services:
     image: postgres:16
     env_file:
       - ./env/database.env
-    environment:
-      - name=value
     expose:
       - 5432
     volumes:
-      - volume_sport_calendar:/var/lib/postgresql/data
+      - volume_database:/var/lib/postgresql/data
       - ./scripts/init_database.sh:/docker-entrypoint-initdb.d/init.sh:ro
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
@@ -40,7 +39,7 @@ services:
       - nt_sport_calendar
   
 volumes:
-  volume_sport_calendar:
+  volume_database:
 networks:
   nt_sport_calendar:
     driver: bridge
