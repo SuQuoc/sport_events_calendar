@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sport Calendar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Ultimate Sport Calendar!</h1>
+        <p>Stay updated with all the latest sports events happening around the world. Never miss a match, a game, or a tournament again!</p>
+        <p>From football to basketball, tennis to cricket, we've got you covered. Join us and be a part of the excitement!</p>
+        <a href="{% url 'events' %}" class="btn btn-primary btn-lg">Explore Events</a>
+    </div>
+</body>
+</html>

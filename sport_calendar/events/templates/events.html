@@ -1,40 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database Entries</title>
+    <title>Sport Events</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-        }
         .card {
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             padding: 20px;
-            margin-bottom: 15px;
-        }
-        .card h3 {
-            margin: 0 0 10px;
-            font-size: 1.5em;
-            color: #333;
-        }
-        .card p {
-            margin: 5px 0;
-            color: #555;
+            border: 1px solid #ddd;
+            border-radius: 5px;
         }
         .card .date {
             font-size: 0.9em;
@@ -47,10 +22,37 @@
         <h1>Sport Events</h1>
         {% for event in events %}
             <div class="card">
-                <h3>{{ event }}</h3> <!-- Replace with your field -->
-                <p>{{ event.description }}</p> <!-- Replace with your field -->
-                <p class="date">Date: {{ event.date }}</p> <!-- Replace with your field -->
-            
+                <h3><a href="#" data-toggle="modal" data-target="#eventModal{{ event.id }}">{{ event }}</a></h3>
+                <p class="title">Date: {{ event.name }}</p>
+                <p class="date">Date: {{ event.date }}</p>
+                <p class="time">Time: {{ event.time }}</p>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel{{ event.id }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModalLabel{{ event.id }}">{{ event.name }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ event.name }}</p>
+                            <p>{{ event.description }}</p>
+                            <p>Date: {{ event.date }}</p>
+                            <p>Time: {{ event.time }}</p>
+                            <p>Venue: {{ event.fkey_venue.name }}</p>
+                            <p>
+                                Teams: {{ event.fkey_away_team.name}} vs {{ event.fkey_home_team.name}}
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         {% endfor %}
         {% if not events %}
