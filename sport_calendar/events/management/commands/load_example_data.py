@@ -26,7 +26,7 @@ class Command(BaseCommand):
         for venue_data in data['venues']:
             country_name = venue_data.pop('country')
             country = countries[country_name]
-            venue, created = Venue.objects.get_or_create(_fkey_country=country, **venue_data)
+            venue, created = Venue.objects.get_or_create(fkey_country=country, **venue_data)
             venues[venue.name] = venue
 
         sports = {}
@@ -38,7 +38,7 @@ class Command(BaseCommand):
         for team_data in data['teams']:
             sport_name = team_data.pop('sport')
             sport = sports[sport_name]
-            team, created = Team.objects.get_or_create(_fkey_sport=sport, **team_data)
+            team, created = Team.objects.get_or_create(fkey_sport=sport, **team_data)
             teams[team.name] = team
 
         for event_data in data['events']:
@@ -53,10 +53,10 @@ class Command(BaseCommand):
             venue = venues[venue_name]
             
             event, created = Event.objects.get_or_create(
-                                        _fkey_sport=sport, 
-                                        _fkey_venue=venue,
-                                        _fkey_home_team=home_team,
-                                        _fkey_away_team=away_team,
+                                        fkey_sport=sport, 
+                                        fkey_venue=venue,
+                                        fkey_home_team=home_team,
+                                        fkey_away_team=away_team,
                                          **event_data)
         
         self.stdout.write(self.style.SUCCESS('Example data loaded successfully.'))
