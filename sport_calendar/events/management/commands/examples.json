@@ -55,7 +55,8 @@
             "description": "Das Spiel des Jahres mit ...",
             "sport": "Football",
             "venue": "Allianz Arena",
-            "teams": ["Salzburg", "Sturm"],
+            "home_team": "Sturm",
+            "away_team": "Salzburg",
             "date": "2024-12-31",
             "time": "18:00:00"
         }

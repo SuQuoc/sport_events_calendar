@@ -44,17 +44,19 @@ class Command(BaseCommand):
         for event_data in data['events']:
             sport_name = event_data.pop('sport')
             venue_name = event_data.pop('venue')
-            team_names = event_data.pop('teams')
-
+            home_team_name = event_data.pop('home_team')
+            away_team_name = event_data.pop('away_team')
+            
+            home_team = teams[home_team_name]
+            away_team = teams[away_team_name]
             sport = sports[sport_name]
             venue = venues[venue_name]
             
-            teams = [teams.get(team_name) for team_name in team_names ]
             event, created = Event.objects.get_or_create(
                                         _fkey_sport=sport, 
                                         _fkey_venue=venue,
+                                        _fkey_home_team=home_team,
+                                        _fkey_away_team=away_team,
                                          **event_data)
-            if created:
-                event._fkey_teams.add(*teams)
-                print(event) 
+        
         self.stdout.write(self.style.SUCCESS('Example data loaded successfully.'))

@@ -11,8 +11,9 @@ class Event(models.Model):
     description = models.TextField()
     _fkey_sport = models.ForeignKey('Sport', on_delete=models.CASCADE, related_name='events')
     _fkey_venue = models.ForeignKey('Venue', on_delete=models.CASCADE, related_name='events')
-    _fkey_teams = models.ManyToManyField('Team', related_name='teams')
-    
+    _fkey_home_team = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='home_events')
+    _fkey_away_team = models.ForeignKey('Team', on_delete=models.CASCADE, related_name='away_events')
+
     date = models.DateField()
     time = models.TimeField()
     status = models.CharField(
