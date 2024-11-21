@@ -1,5 +1,5 @@
 DOCKER_COMPOSE = docker compose
-IMAGE_NAME = sport_calendar
+IMAGE_NAME = sport_calendar:latest
 CONTAINER_NAME = sport_calendar
 VOLUME_NAME = sport_calendar_volume_database
 
@@ -24,7 +24,6 @@ rm_vol:
 	docker volume rm $(VOLUME_NAME)
 
 clean: down
-	docker rm $(CONTAINER_NAME)
 	docker rmi $(IMAGE_NAME)
 
 fclean: clean rm_vol 
