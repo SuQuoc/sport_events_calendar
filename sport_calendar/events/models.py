@@ -1,12 +1,12 @@
 from django.db import models
 
-class Event(models.Model):
-    class Status(models.TextChoices):
-        SCHEDULED = 'scheduled'
-        ONGOING = 'ongoing'
-        FINISHED = 'completed'
-        CANCELLED = 'cancelled'
+class EventStatus(models.TextChoices):
+    SCHEDULED = 'scheduled'
+    ONGOING = 'ongoing'
+    FINISHED = 'completed'
+    CANCELLED = 'cancelled'
 
+class Event(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.TextField()
     fkey_sport = models.ForeignKey('Sport', on_delete=models.CASCADE, related_name='events')
@@ -17,8 +17,8 @@ class Event(models.Model):
     date = models.DateField()
     time = models.TimeField()
     status = models.CharField(
-        choices=Status.choices,
-        default=Status.SCHEDULED,
+        choices=EventStatus.choices,
+        default=EventStatus.SCHEDULED,
     )
 
     # def __str__(self):
