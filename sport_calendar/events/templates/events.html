@@ -22,7 +22,15 @@
 <body>
     {% include 'navbar.html' %}
     <div class="container">
-        <h1>Calendar</h1>
+        <div class="d-flex justify-content-between align-items-center my-3">
+            <h1>Calendar</h1>
+            
+            <!-- Plus Button -->
+            <a href="{% url 'add_event'%}" class="btn btn-primary btn-lg add-button">
+                <span class="glyphicon glyphicon-plus"></span> +
+            </a>
+        </div>
+        
         {% for event in events %}
             <div class="card">
                 <h3>
@@ -33,13 +41,14 @@
                 <p class="date">Date: {{ event.date }}</p>
                 <p class="time">Time: {{ event.time }}</p>
             </div>
+            
 
             <!-- Modal -->
             <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel{{ event.id }}" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="eventModalLabel{{ event.id }}">
+                                <h5 class="modal-title" id="eventModalLabel{{ event.id }}">
                                 {{ event.name }}: {{ event.fkey_away_team.name}} vs {{ event.fkey_home_team.name}}
                             </h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

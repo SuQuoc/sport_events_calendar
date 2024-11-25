@@ -1,0 +1,15 @@
+<!-- templates/add_my_object.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Event</title>
+</head>
+<body>
+    <h1>Add New Event</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Render the form fields -->
+        <button type="">Save</button>
+    </form>
+</body>
+</html>
