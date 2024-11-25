@@ -30,18 +30,25 @@
                 <span class="glyphicon glyphicon-plus"></span> +
             </a>
         </div>
+        
+        <!-- Search Bar -->
+        <form method="GET" action="{% url 'events' %}" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request.GET.q }}">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        
+        {% if events %}
+            {% for event in events %}
+                <div class="card">
+                    <h3>
+                        <a href="#" data-toggle="modal" data-target="#eventModal{{ event.id }}">
+                            {{ event.name }}: {{ event.fkey_away_team.name }} vs {{ event.fkey_home_team.name }}
+                        </a>
+                    </h3>
+                    <p class="date">Date: {{ event.date }}</p>
+                    <p class="time">Time: {{ event.time }}</p>
+                </div>
 
-        {% for event in events %}
-            <div class="card">
-                <h3>
-                    <a href="#" data-toggle="modal" data-target="#eventModal{{ event.id }}">
-                        {{ event.name }}: {{ event.fkey_away_team.name }} vs {{ event.fkey_home_team.name }}
-                    </a>
-                </h3>
-                <p class="date">Date: {{ event.date }}</p>
-                <p class="time">Time: {{ event.time }}</p>
-            </div>
-            
 
             <!-- Modal -->
             <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel{{ event.id }}" aria-hidden="true">

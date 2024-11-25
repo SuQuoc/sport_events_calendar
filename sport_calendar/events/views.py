@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Q
 from .models import Event
 from .forms import EventForm
 
@@ -8,7 +9,15 @@ def home(request):
     return render(request, 'home.html')
 
 def events(request):
-    events = Event.objects.order_by('date')
+    query = request.GET.get('query')
+    if query:
+        events = Event.objects.filter(
+            Q(name__icontains=query) |
+            Q(fkey_home_team__name__icontains=query) |
+            Q(fkey_away_team__name__icontains=query)
+        ).order_by('date', 'time')
+    else:
+        events = Event.objects.order_by('date', 'time')
     return render(request, 'events.html', {'events': events})
 
 def add_event(request):
