@@ -33,3 +33,8 @@ def edit_event(request, event_id):
         form = EventForm(instance=event)
 
     return render(request, 'add_event.html', {'form': form, 'event': event})
+
+def delete_event(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+    event.delete()
+    return redirect('events')
