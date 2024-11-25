@@ -30,7 +30,7 @@
                 <span class="glyphicon glyphicon-plus"></span> +
             </a>
         </div>
-        
+
         {% for event in events %}
             <div class="card">
                 <h3>
@@ -64,6 +64,7 @@
                             </p>
                         </div>
                         <div class="modal-footer">
+                            <a href="{% url 'edit_event' event.id%}" class="btn btn-primary">Edit</a>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>

@@ -35,7 +35,7 @@ class EventForm(forms.ModelForm):
                                         }, 
                                     format='%d/%m/%Y'
                                     ),
-            'time': forms.TimeInput(attrs={'type': 'time'})
+            'time': forms.TimeInput(attrs={'type': 'time', 'step': 60})
         }
 
     def __init__(self, *args, **kwargs):

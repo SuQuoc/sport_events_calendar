@@ -18,11 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.core.management import call_command
-
+from events.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('events.urls')),
+    path('events/', include('events.urls')),
+    path('', home, name='home'),
 ]
 
 # Creating example data if no events in database
