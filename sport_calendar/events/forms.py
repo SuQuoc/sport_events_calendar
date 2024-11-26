@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event, EventStatus, Sport
+from .models import Event, EventStatus, Sport, Venue, Team, Country
 import re
 
 
@@ -7,15 +7,15 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = [
-                'name',
-                'description',
-                'fkey_sport',
-                'fkey_venue',
-                'fkey_home_team',
-                'fkey_away_team',
-                'date',
-                'time',
-                'status',
+            'name',
+            'description',
+            'fkey_sport',
+            'fkey_venue',
+            'fkey_home_team',
+            'fkey_away_team',
+            'date',
+            'time',
+            'status',
         ]
 
         labels = {
@@ -83,7 +83,6 @@ class EventForm(forms.ModelForm):
         if events.exists():
             return False
         
-            
     def team_available(self, team, date, time):
         # NOTE: should only return 1 event, except of event creation outside of this form
         # e.g. admin interface
@@ -96,13 +95,37 @@ class EventForm(forms.ModelForm):
             return False
         
         return True
-    
+
+
+class VenueForm(forms.ModelForm):
+    class Meta:
+        model = Venue
+        fields = [
+            'name', 'city', 'address', 'fkey_country'
+        ]
+        
+        labels = {
+            'fkey_country': 'Country',
+        }
+
+
+class TeamForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = [
+            'name', 'fkey_sport'
+        ]
+
+        labels = {
+            'fkey_sport': 'Sport'
+        }
+
 
 class SportForm(forms.ModelForm):
     class Meta:
         model = Sport
         fields = [
-                'name',
+            'name'
         ]
 
     def clean_name(self):
@@ -112,3 +135,11 @@ class SportForm(forms.ModelForm):
 
         name = ' '.join(word.capitalize() for word in name.split())
         return name
+
+
+class CountryForm(forms.ModelForm):
+    class Meta:
+        model = Country
+        fields = [
+            'name', 'code'
+        ]

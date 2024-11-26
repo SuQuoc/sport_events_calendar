@@ -18,12 +18,18 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.core.management import call_command
-from events.views import home
+from events.views import home, list_models, add_model, edit_model, delete_model
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('events/', include('events.urls')),
+    path('', include('events.urls')),
     path('', home, name='home'),
+
+    path('<str:model_name>/list', list_models, name='list_models'),
+    path('<str:model_name>/add', add_model, name='add_model'),
+    path('<str:model_name>/edit/<int:model_id>', edit_model, name='edit_model'),
+    path('<str:model_name>/delete/<int:model_id>', delete_model, name='delete_model'),
 ]
 
 # Creating example data if no events in database

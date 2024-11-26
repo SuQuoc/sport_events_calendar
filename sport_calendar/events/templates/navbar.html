@@ -12,7 +12,19 @@
                 <a class="nav-link" href="#">News</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Calendar</a>
+                <a class="nav-link" href="{% url 'events' %}">Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list_models' 'sport' %}">Sports</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list_models' 'team' %}">Teams</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list_models' 'venue' %}">Venues</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'list_models' 'country' %}">Countries</a>
             </li>
         </ul>
     </div>
