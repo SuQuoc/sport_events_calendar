@@ -18,15 +18,21 @@
             </div>
             <div>
                 {{ form.fkey_sport.label_tag }} {{ form.fkey_sport }}
-                <a href="{% url 'add_model' 'sport' %}" class="btn btn-primary btn-sm">
+                <a href="{% url 'add_model' 'sport' %}" class="btn btn-primary py-0 btn-sm">
                     +
                 </a>
             </div>
             <div>
                 {{ form.fkey_venue.label_tag }} {{ form.fkey_venue }}
+                <a href="{% url 'add_model' 'venue' %}" class="btn btn-primary py-0 btn-sm">
+                    +
+                </a>
             </div>
             <div>
                 {{ form.fkey_home_team.label_tag }} {{ form.fkey_home_team }}
+                <a href="{% url 'add_model' 'team' %}" class="btn btn-primary py-0 btn-sm">
+                    +
+                </a>
             </div>
             <div>
                 {{ form.fkey_away_team.label_tag }} {{ form.fkey_away_team }}
@@ -40,7 +46,7 @@
             <div>
                 {{ form.status.label_tag }} {{ form.status }}
             </div>
-            <button type="">Save</button>
+            <button class="btn bg-primary mt-3" type="submit">Save</button>
         </form>
     </div>
 </body>
