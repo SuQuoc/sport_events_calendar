@@ -1,15 +1,47 @@
-<!-- templates/add_my_object.html -->
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Add Event</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Add New Event</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Render the form fields -->
-        <button type="">Save</button>
-    </form>
+    <div class="container ml-2">
+        <h1>Add New Event</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.name.label_tag }} {{ form.name }}
+            </div>
+            <div>
+                {{ form.description.label_tag }} {{ form.description }}
+            </div>
+            <div>
+                {{ form.fkey_sport.label_tag }} {{ form.fkey_sport }}
+                <a href="{% url 'add_model' 'sport' %}" class="btn btn-primary btn-sm">
+                    +
+                </a>
+            </div>
+            <div>
+                {{ form.fkey_venue.label_tag }} {{ form.fkey_venue }}
+            </div>
+            <div>
+                {{ form.fkey_home_team.label_tag }} {{ form.fkey_home_team }}
+            </div>
+            <div>
+                {{ form.fkey_away_team.label_tag }} {{ form.fkey_away_team }}
+            </div>
+            <div>
+                {{ form.date.label_tag }} {{ form.date }}
+            </div>
+            <div>
+                {{ form.time.label_tag }} {{ form.time }}
+            </div>
+            <div>
+                {{ form.status.label_tag }} {{ form.status }}
+            </div>
+            <button type="">Save</button>
+        </form>
+    </div>
 </body>
 </html>

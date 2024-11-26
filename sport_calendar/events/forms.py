@@ -1,5 +1,7 @@
 from django import forms
-from .models import Event, EventStatus
+from .models import Event, EventStatus, Sport
+import re
+
 
 class EventForm(forms.ModelForm):
     class Meta:
@@ -94,3 +96,19 @@ class EventForm(forms.ModelForm):
             return False
         
         return True
+    
+
+class SportForm(forms.ModelForm):
+    class Meta:
+        model = Sport
+        fields = [
+                'name',
+        ]
+
+    def clean_name(self):
+        name = self.cleaned_data.get('name')
+        if not re.match(r'^[A-Za-z ]*$', name):
+            raise forms.ValidationError('Name can only contain alphabetical characters and spaces.')
+
+        name = ' '.join(word.capitalize() for word in name.split())
+        return name
