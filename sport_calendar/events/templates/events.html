@@ -3,9 +3,6 @@
 <head>
     <title>Sport Events</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         .card {
             margin-bottom: 20px;
@@ -14,8 +11,13 @@
             border-radius: 5px;
         }
         .card .date {
-            font-size: 0.9em;
-            color: #888;
+            font-size: 1em;
+            color: #666;
+        }
+
+        .card .sport {
+            font-size: 1.1em;
+            color: #444;
         }
     </style>
 </head>
@@ -26,31 +28,31 @@
             <h1>Calendar</h1>
             
             <!-- Plus Button -->
-            <a href="{% url 'add_event'%}" class="btn btn-primary btn-lg add-button">
+            <a href="{% url 'add_event' %}" class="btn btn-primary btn-lg add-button">
                 <span class="glyphicon glyphicon-plus"></span> +
             </a>
         </div>
         
         <!-- Search Bar -->
-        <form method="GET" action="{% url 'events' %}" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request.GET.q }}">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <form method="GET" action="{% url 'events' %}" class="form-inline my-2 my-lg-0 ">
+            <div class="searchbar mb-3">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{ request.GET.q }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>    
         </form>
         
         {% if events %}
             {% for event in events %}
                 <div class="card">
                     <h3>
-                        <a href="#" data-toggle="modal" data-target="#eventModal{{ event.id }}">
+                        <a class="text-primary" data-toggle="modal" data-target="#eventModal{{ event.id }}">
                             {{ event.name }}: {{ event.fkey_away_team.name }} vs {{ event.fkey_home_team.name }}
                         </a>
                     </h3>
-                    <p class="date">Date: {{ event.date }}</p>
-                    <p class="time">Time: {{ event.time }}</p>
+                    <p class="sport">{{ event.fkey_sport }}</p>
+                    <p class="date">{{ event.date }}&nbsp;&nbsp;&nbsp;&nbsp;{{ event.time }}</p>
                 </div>
 
-
-                
                 {% include 'event_modal.html' %}
             {% endfor %}
         {% else %}
