@@ -24,7 +24,7 @@ A web-based application to manage and browse sports events. The Sport Calendar a
 ## Table of Contents
 1. [About](#about)
 2. [Installation](#installation)
-3. [Entity Relationship Diagram](#entity relationship diagram)
+3. [Entity Relationship Diagram](#entity-relationship-diagram)
 
 ---
 
@@ -33,7 +33,7 @@ A web-based application to manage and browse sports events. The Sport Calendar a
 Sport Calendar is designed for sports event organizers and administrators to plan events efficiently while avoiding scheduling conflicts. Although designed with administrative use in mind, the absence of authentication means all users can currently manage and create events. 
 
 ---
-## Entity Relationship Diagram (ERD)
+## Entity Relationship Diagram
 ![ERD](ERD.png "ERD")
 
 
@@ -54,3 +54,10 @@ To set up the Sport Calendar locally, follow these steps:
 
 2. **Access the application:**
 Open your browser and go to http://localhost:8000
+
+
+## Notes:
+* It is assumed that one venue can only host one event at a time. So tournaments where teams play at the same time are not supported.
+* In django templates variables and attributes may not begin with underscores: e.g. 'event._fkey_venue.name'
+  * tested workaround with a custom filter, but not a fitting solution.
+* Since this is a demo-project the necessary env files are already provided (usually not pushed to git)
