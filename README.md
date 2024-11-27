@@ -24,6 +24,7 @@ A web-based application to manage and browse sports events. The Sport Calendar a
 ## Table of Contents
 1. [About](#about)
 2. [Installation](#installation)
+3. [Entity Relationship Diagram](#entity relationship diagram)
 
 ---
 
@@ -32,6 +33,9 @@ A web-based application to manage and browse sports events. The Sport Calendar a
 Sport Calendar is designed for sports event organizers and administrators to plan events efficiently while avoiding scheduling conflicts. Although designed with administrative use in mind, the absence of authentication means all users can currently manage and create events. 
 
 ---
+## Entity Relationship Diagram (ERD)
+![ERD](ERD.png "ERD")
+
 
 ## Installation
 
