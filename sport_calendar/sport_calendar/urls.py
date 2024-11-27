@@ -23,7 +23,7 @@ from events.views import home, list_models, add_model, edit_model, delete_model
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('events/', include('events.urls')),
-    path('', include('events.urls')),
+    # path('', include('events.urls')),
     path('', home, name='home'),
 
     path('<str:model_name>/list', list_models, name='list_models'),
