@@ -31,7 +31,7 @@ def add_event(request):
             return redirect('events')
     else:
         form = EventForm()
-    return render(request, 'add_event.html', {'form': form})
+    return render(request, 'add_event.html', {'form': form, 'operation': 'Add'})
 
 
 def edit_event(request, event_id):
@@ -43,7 +43,11 @@ def edit_event(request, event_id):
             return redirect('events')
     else:
         form = EventForm(instance=event)
-    return render(request, 'add_event.html', {'form': form, 'event': event})
+    return render(request, 'add_event.html',
+                {'form': form,
+                 'event': event,
+                'operation': 'Edit'
+    })
 
 
 def delete_event(request, event_id):
@@ -94,7 +98,12 @@ def add_model(request, model_name):
             form.save()
     else:
         form = form_class()
-    return render(request, f'{MODELS_HTML}/add_model.html', {'form': form, 'model_name': model_name})
+    return render(request, f'{MODELS_HTML}/add_model.html',
+                {
+                    'form': form,
+                    'model_name': model_name,
+                    'operation': 'Add'
+    })
 
 
 def edit_model(request, model_name, model_id):
@@ -111,7 +120,13 @@ def edit_model(request, model_name, model_id):
             form.save()
     else:
         form = form_class(instance=model)
-    return render(request, f'{MODELS_HTML}/add_model.html', {'form': form, 'model_name': model_name, 'model': model})
+    return render(request, f'{MODELS_HTML}/add_model.html',
+                {
+                    'form': form,
+                    'model_name': model_name,
+                    'model': model,
+                    'operation': 'Edit'
+    })
 
 
 def delete_model(request, model_name, model_id):

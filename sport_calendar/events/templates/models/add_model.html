@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add {{ model_name }}</title>
+    <title>{{ operation }} {{ model_name }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container ml-2">
-        <h1>Add New {{ model_name }}</h1>
+        <h1>{{ operation }} {{ model_name }}</h1>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}

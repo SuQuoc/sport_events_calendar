@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Event</title>
+    <title>{{ operation }} Event</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="container ml-2">
-        <h1>Add New Event</h1>
+        <h1>{{ operation }} Event</h1>
         <form method="post">
             {% csrf_token %}
             {% render_field form.name %}
