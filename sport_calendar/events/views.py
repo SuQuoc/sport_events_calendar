@@ -139,7 +139,7 @@ def delete_model(request, model_name, model_id):
     model_class = get_model_by_name('events', model_name)
     event = get_object_or_404(model_class, id=model_id)
     event.delete()
-    return redirect(f'{MODELS_HTML}/list_models', model_name=model_name)
+    return redirect('list_models', model_name=model_name)
 
 
 def get_model_by_name(app_label, model_name):
