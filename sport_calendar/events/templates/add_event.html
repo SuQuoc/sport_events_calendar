@@ -1,3 +1,5 @@
+{% load form_tags %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,42 +11,15 @@
         <h1>Add New Event</h1>
         <form method="post">
             {% csrf_token %}
-            <div>
-                {{ form.name.label_tag }} {{ form.name }}
-            </div>
-            <div>
-                {{ form.description.label_tag }} {{ form.description }}
-            </div>
-            <div>
-                {{ form.fkey_sport.label_tag }} {{ form.fkey_sport }}
-                <a href="{% url 'add_model' 'sport' %}" class="btn btn-primary py-0 btn-sm">
-                    +
-                </a>
-            </div>
-            <div>
-                {{ form.fkey_venue.label_tag }} {{ form.fkey_venue }}
-                <a href="{% url 'add_model' 'venue' %}" class="btn btn-primary py-0 btn-sm">
-                    +
-                </a>
-            </div>
-            <div>
-                {{ form.fkey_home_team.label_tag }} {{ form.fkey_home_team }}
-                <a href="{% url 'add_model' 'team' %}" class="btn btn-primary py-0 btn-sm">
-                    +
-                </a>
-            </div>
-            <div>
-                {{ form.fkey_away_team.label_tag }} {{ form.fkey_away_team }}
-            </div>
-            <div>
-                {{ form.date.label_tag }} {{ form.date }}
-            </div>
-            <div>
-                {{ form.time.label_tag }} {{ form.time }}
-            </div>
-            <div>
-                {{ form.status.label_tag }} {{ form.status }}
-            </div>
+            {% render_field form.name %}
+            {% render_field form.description %}
+            {% render_field_w_plus_btn form.fkey_sport %}
+            {% render_field_w_plus_btn form.fkey_venue %}
+            {% render_field_w_plus_btn form.fkey_home_team %}
+            {% render_field_w_plus_btn form.fkey_away_team %}
+            {% render_field form.date %}
+            {% render_field form.time %}
+            {% render_field form.status %}
             <button class="btn bg-primary mt-3" type="submit">Save</button>
         </form>
     </div>
