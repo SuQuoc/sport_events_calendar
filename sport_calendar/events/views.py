@@ -88,7 +88,8 @@ form_classes = {
 def add_model(request, model_name):
     form_classes = {
         'sport': SportForm,
-        'team': TeamForm,
+        'home team': TeamForm,
+        'away team': TeamForm,
         'venue': VenueForm,
         'country': CountryForm
     }
