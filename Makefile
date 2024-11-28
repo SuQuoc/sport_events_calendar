@@ -28,5 +28,5 @@ clean: down
 
 fclean: clean rm_vol 
 	
-re: down rm_vol build_up
+re: down rm_vol build up
 
