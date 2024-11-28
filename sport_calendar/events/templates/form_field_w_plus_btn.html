@@ -1,6 +1,6 @@
 <div class="form-group">
     {{ field.label_tag }} {{ field }}
-    <a href="{% url 'add_model' 'field.label_tag' %}" class="btn btn-primary py-0 btn-sm">+</a>
+    <a href="{% url 'add_model' field.label %}" class="btn btn-primary py-0 btn-sm">+</a>
     {% for error in field.errors %}
         <div class="alert alert-danger">{{ error }}</div>
     {% endfor %}
