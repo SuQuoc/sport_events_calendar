@@ -15,4 +15,7 @@ if not User.objects.filter(username='$ADMIN_USERNAME').exists():
 EOF
 fi
 
+# Creating example data if no events in database
+python manage.py load_example_data
+
 exec "$@"

@@ -32,5 +32,4 @@ urlpatterns = [
     path('<str:model_name>/delete/<int:model_id>', delete_model, name='delete_model'),
 ]
 
-# Creating example data if no events in database
-call_command('load_example_data')
+
