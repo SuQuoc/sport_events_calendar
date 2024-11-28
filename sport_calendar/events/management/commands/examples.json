@@ -59,6 +59,17 @@
             "away_team": "Salzburg",
             "date": "2024-12-31",
             "time": "18:00:00"
+        },
+
+        {
+            "name": "Playoff Finale",
+            "description": "Es wird kalt in der Halle mit ...",
+            "sport": "Ice Hockey",
+            "venue": "Ernst Happel Stadion",
+            "home_team": "Capitals",
+            "away_team": "KAC",
+            "date": "2024-12-01",
+            "time": "17:30:00"
         }
     ]
 }
