@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.utils import timezone
 from django.db.models import Q
 from .models import Event
 from .forms import *
@@ -12,14 +13,18 @@ def home(request):
 
 def events(request):
     query = request.GET.get('query')
+    now = timezone.now()
     if query:
         events = Event.objects.filter(
             Q(name__icontains=query) |
             Q(fkey_home_team__name__icontains=query) |
-            Q(fkey_away_team__name__icontains=query)
+            Q(fkey_away_team__name__icontains=query),
+            date__gte=now.date()
         ).order_by('date', 'time')
     else:
-        events = Event.objects.order_by('date', 'time')
+        events = Event.objects.filter(
+            date__gte=now.date()
+        ).order_by('date', 'time')
     return render(request, 'events.html', {'events': events})
 
 
