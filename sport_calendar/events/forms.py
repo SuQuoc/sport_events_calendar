@@ -82,6 +82,7 @@ class EventForm(forms.ModelForm):
         events = venue.events.filter(status=EventStatus.SCHEDULED, date=date, time=time)
         if events.exists():
             return False
+        return True
         
     def team_available(self, team, date, time):
         # NOTE: should only return 1 event, except of event creation outside of this form
